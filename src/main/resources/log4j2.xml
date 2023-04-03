@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="appenderPatternLayout">%d{HH:mm:ss.SSS} [%t] %-5level %l - %msg%n</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- warning %l needs many resources, remove in case of problems -->
+            <PatternLayout pattern="${appenderPatternLayout}"/>
+        </Console>
+        <File name="LogToFile" fileName="logs/latest.log" immediateFlush="true" append="false">
+            <PatternLayout pattern="${appenderPatternLayout}"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Logger name="de.holube.fakestudy" level="info"> <!-- level="${sys:logging.level:-info}" -->
+            <AppenderRef ref="LogToFile"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
